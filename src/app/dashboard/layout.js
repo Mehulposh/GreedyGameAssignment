@@ -1,14 +1,34 @@
-import "./globals.css";
+"use client"
 
-export const metadata = {
-  title: "Greedy Game Dashboard",
-  description: "User management & todo dashboard",
-};
+import { useEffect } from "react"
+import Sidebar from '@/components/Sidebar'
+import AuthStore from "@/store/AuthStore"
+import { useRouter } from "next/navigation"
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+export default function DashboardLayout({children}){
+    const {user, fetchUser, loading} = AuthStore();
+    const router = useRouter();
+
+    useEffect(()=> {
+        fetchUser();
+    },[]);
+
+    useEffect(() => {
+        if(!loading && !user){
+            router.push('/')
+        }
+    },[loading,user])
+
+    if(loading) return <p>Loading...</p>
+
+    if(!user) return null
+
+    return(
+        <div>
+            <Sidebar />
+            <main>
+                {children}
+            </main>
+        </div>
+    )
 }
