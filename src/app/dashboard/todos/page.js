@@ -8,12 +8,15 @@ import Status from "@/components/Badge"
 import TodoForm from '@/components/TodoForm'
 import TodoStore from "@/store/TodoStore";
 import DateFormater from "@/utils/DateFormater";
-
+import TodoDetails from "@/components/TodoDetails";
 
 export default function TodoList(){
     const {todos,deleteTodo,fetchTodos} = TodoStore();
     const [showform,setShowForm] = useState(false);
     const [editingTodo, setEditingTodo] = useState(null)
+    const [showDetails,setShowDetails] = useState(false)
+    const [details, setDetails] = useState(null)
+
 
     useEffect(() => {
         fetchTodos()
@@ -36,7 +39,7 @@ export default function TodoList(){
                 <h1 className="text-xl font-semibold">All Todos</h1>
                 <div className="space-x-5 flex items-center">
                     <button className="border border-black/12 flex justify-around items-center text-sm rounded px-4 py-2">
-                        <CiFilter/>
+                        <CiFilter className="text-green-300 font-bold text-lg"/>
                         Filter
                     </button>
                     <button 
@@ -60,7 +63,7 @@ export default function TodoList(){
                 </thead>
                 <tbody>
                     {todos.map((todo) => (
-                        <tr key={todo.id} className="border-b text-md font-semibold ">
+                        <tr key={todo.id} className="border-b text-md font-semibold cursor-pointer" onClick={() => {setShowDetails(prev => !prev);setDetails(todo)}}>
                             <td className="p-3">
                                 <div>
                                     <p>{todo.title}</p>
@@ -92,6 +95,19 @@ export default function TodoList(){
                 }}
                 editingTodo={editingTodo}
             />
+        }
+
+        {showDetails && 
+            <TodoDetails 
+                todo={details}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+                onClose={()=> {
+                    setShowDetails(false)
+                    setDetails(null)
+                }}
+            />
+
         }
         </div>
     )

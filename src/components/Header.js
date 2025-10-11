@@ -25,12 +25,12 @@ export default function Header({user}){
     };
     return(
     <>
-        <nav className="flex justify-between items-center p-4">
-            <div className="flex gap-5 justify-evenly items-center">
+        <nav className="relative flex justify-between items-center p-4 bg-white">
+            <div className="w-1/3 flex gap-10 justify-between items-center">
                 <h2 className="font-bold " onClick={() => setOpenSiderbar(prev => !prev)}>
                     GREEDYGAME
                 </h2>
-                <div className="bg-gray-200 px-1 flex items-center gap-2 rounded-lg">
+                <div className="bg-gray-200 px-1 w-full flex items-center gap-2 rounded-lg">
                     <CiSearch />
 
                     <input 
@@ -47,7 +47,7 @@ export default function Header({user}){
                 </button>
 
                 <div className="flex items-center" onClick={() => setOpenProfile(prev => !prev)}>
-                    <img src='/next.svg' className="w-10 h-10"/>
+                    <IoPersonSharp className="w-10 h-10 rounded-full"/>
                     <IoIosArrowDown />
                 </div>
             </div>
@@ -55,16 +55,18 @@ export default function Header({user}){
             
         </nav>
         {openProfile && (
-            <div className="absolute top-15 right-20 flex flex-col items-start gap-4  bg-white py-4 px-6 rounded-xl w-50 text-sm ring-black/8">
-                <Link href='/dashboard/profile' className="flex items-center gap-2">
+            <div>
+                <div className="absolute right-15 top-10 flex flex-col items-start gap-4  bg-white py-4 px-6 rounded-xl w-50 text-sm ring-black/10">
+                    <button onClick={() => router.push('/dashboard/profile')} className="flex items-center gap-2">
                     <IoPersonSharp className="text-gray-500"/>
                     Profile
-                </Link>
+                    </button>
                 
-                <button onClick={logout} className="flex items-center gap-2">
-                    <IoIosLogOut className="text-gray-500" />
-                    Logout
-                </button>
+                    <button onClick={logout} className="flex items-center gap-2">
+                        <IoIosLogOut className="text-gray-500" />
+                        Logout
+                    </button>
+                </div>
             </div>
         )}
         {oepnSidebar && <Sidebar user={user}  onClose={()=> setOpenSiderbar(false)}/>}

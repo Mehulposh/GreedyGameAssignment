@@ -35,18 +35,19 @@ export default function Sidebar({user,onClose}){
         </h2>
 
         <nav className="space-y-3 flex flex-col justify-center items-center">
-          <Link href="/dashboard" className="flex items-center gap-2">
+          <button className="flex items-center gap-2 hover:text-white hover:bg-green-400 hover:rounded-lg hover:p-2" onClick={() => router.push('/dashboard')}>
+            
             <span><TbLayoutDashboardFilled /></span>
             Dashboard
-          </Link>
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <span><SlCalender /></span>
-            Calender
-          </Link>
-          <Link href="/dashboard/todos" className="flex items-center gap-2">
+          </button>
+          <button className="flex items-center gap-5 hover:text-white hover:bg-green-400 hover:rounded-lg hover:p-2" onClick={() => router.push('/dashboard')}>            
             <span><RiCalendarTodoLine /></span>
-            To do List 
-          </Link>
+            Calender
+          </button>
+          <button className="flex items-center gap-4 hover:text-white hover:bg-green-400 hover:rounded-lg hover:p-2" onClick={() => router.push('/dashboard/todos')}>
+            <span><TbLayoutDashboardFilled /></span>
+            To Do List
+          </button>
           {role === "superuser" && <Link href="/dashboard/admin/users">User Management</Link>}
         </nav>
       </div>

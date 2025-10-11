@@ -52,11 +52,12 @@ export default function Dashboard(){
             </div>
 
             <TotalTodos />
-            <div className="flex justify-between items-center mt-5 ">
+            <div className="bg-white px-5 rounded-lg py-2 mt-5">
+            <div className="flex justify-between items-center ">
                 <h1 className="text-xl font-semibold">All Todos</h1>
                 <div className="space-x-5 flex items-center">
                     <button className="border border-black/12 flex justify-around items-center text-sm rounded px-4 py-2">
-                        <CiFilter/>
+                        <CiFilter className="text-green-300 font-bold text-lg"/>
                         Filter
                     </button>
                     <button 
@@ -68,7 +69,7 @@ export default function Dashboard(){
                 </div>
             </div>
 
-            <table className="w-full bg-white  text-sm mt-5 rounded shadow">
+            <table className="w-full  text-sm mt-5 rounded shadow">
                 <thead>
                     <tr className="text-left border-b text-gray-400">
                         <th className="p-3">Todo</th>
@@ -102,7 +103,7 @@ export default function Dashboard(){
                     ))}
                 </tbody>
             </table>
-
+            </div>
             {showform && 
                 <TodoForm 
                     onClose={()=> {

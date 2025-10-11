@@ -1,22 +1,25 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoStore from "@/store/TodoStore";
 import { formatDistanceToNow } from "date-fns";
 import { RiCloseLargeLine } from "react-icons/ri";
 
 export default function NotificationDrawer({onClose}) {
-  const { todos } = TodoStore();
+  const { todos , fetchTodos } = TodoStore();
   
+  useEffect(() => {
+    fetchTodos()
+  },[])
   const upcoming = todos.filter((t) => {
     const hoursDiff = (new Date(t.due_at) - new Date()) / (1000 * 60 * 60);
     return hoursDiff > 0 && hoursDiff <= 4;
   });
 
   return (
-    <div>
+    <div className="absolute top-0 left-0 right-0 h-full w-full flex justify-end bg-black/30">
 
       
-        <div className="absolute right-0 top-0 h-screen w-90 bg-white border rounded shadow-lg p-4 z-10">
+        <div className=" bg-white w-1/3 border rounded shadow-lg p-4 z-10">
           <h3 className="text-lg font-semibold mb-2 flex justify-between items-center">
             All Notifiactions
             <span onClick={onClose}><RiCloseLargeLine /></span>    

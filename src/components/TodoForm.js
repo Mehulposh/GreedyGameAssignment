@@ -45,9 +45,11 @@ export default function TodoForm({onClose,editingTodo}){
             // Combine date and time into ISO format
             let dueDateTime = null
             if (formData.due_at && formData.time) {
-                dueDateTime = `${formData.due_at}T${formData.time}:00Z`
+                const localDateTimeString = `${formData.due_at}T${formData.time}:00`
+                dueDateTime = new Date(localDateTimeString).toISOString()
             } else if (formData.due_at) {
-                dueDateTime = `${formData.due_at}T00:00:00Z`
+               const localDateTimeString = `${formData.due_at}T00:00:00`
+               dueDateTime = new Date(localDateTimeString).toISOString()
             }
 
             const todoData = {
@@ -105,7 +107,7 @@ export default function TodoForm({onClose,editingTodo}){
                                 type="date"
                                 placeholder="Choose Due Date"
                                 className="py-3 rounded-lg px-2 ring-1 ring-black/8"
-                                value={formData.date}
+                                value={formData.due_at}
                                 onChange={(e)=> {setFormData({...formData,due_at: e.target.value})}}
                             />
                         </label>
@@ -131,6 +133,6 @@ export default function TodoForm({onClose,editingTodo}){
                         </div>
                     </form>
                    {error && <p className="text-red-500 mt-2">{error}</p>}
-                </div>
+        </div>
     )
 }
