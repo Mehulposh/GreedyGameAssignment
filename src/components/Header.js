@@ -10,6 +10,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
 import NotificationDrawer from "./NotificationDrawer";
 import Link from "next/link";
+import { supabase } from "@/lib/supabaseClient";
 
 
 export default function Header({user}){

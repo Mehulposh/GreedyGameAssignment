@@ -8,15 +8,29 @@ import AuthStore from "@/store/AuthStore"
 import { CiFilter } from "react-icons/ci";
 import { BiEditAlt } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
+import Status from "@/components/Badge"
 
 
 
 export default function Dashboard(){
      const {user}  = AuthStore()
-    const {todos,fetchTodos,loading} = TodoStore();
+    const {todos,fetchTodos,updateTodo,deleteTodo} = TodoStore();
     const [showform,setShowForm] = useState(false);
-    
+    const [editingTodo, setEditingTodo] = useState(null)
+
     console.log(user);
+    console.log(todos);
+    
+    const handleDelete = async (id) => {
+         if (confirm('Are you sure you want to delete this todo?')) {
+            await deleteTodo(id)
+        }
+    }
+
+    const handleEdit = (todo) => {
+        setEditingTodo(todo)
+        setShowForm(true)
+    }
     
     useEffect(() => {
         fetchTodos()
@@ -50,13 +64,18 @@ export default function Dashboard(){
                         <CiFilter/>
                         Filter
                     </button>
-                    <button className="bg-green-600  px-2 py-2 text-white text-sm rounded "><span> + </span>   Add Todo</button>
+                    <button 
+                        onClick={() => setShowForm(prev => !prev)}
+                        className="bg-green-600  px-2 py-2 text-white text-sm rounded ">
+                        <span> + </span> 
+                        Add Todo
+                    </button>
                 </div>
             </div>
 
-            <table className="w-full bg-white text-gray-400 text-sm mt-5 rounded shadow">
+            <table className="w-full bg-white  text-sm mt-5 rounded shadow">
                 <thead>
-                    <tr className="text-left border-b">
+                    <tr className="text-left border-b text-gray-400">
                         <th className="p-3">Todo</th>
                         <th className="p-3">Due Date</th>
                         <th className="p-3">Status</th>
@@ -65,16 +84,21 @@ export default function Dashboard(){
                 </thead>
                 <tbody>
                     {todos.map((todo) => (
-                        <tr key={todo.id} className="border-b">
-                            <td className="p-3">{todo.title}</td>
-                            <td className="p-3">{formatDate(todo.due_at)}</td>
-                            <td className='p-3'>{todo.completed ? "Done" : "Pending"}</td>
+                        <tr key={todo.id} className="border-b text-md font-semibold ">
                             <td className="p-3">
                                 <div>
-                                    <button>
+                                    <p>{todo.title}</p>
+                                     <p className="text-sm text-gray-400">{todo.description}</p>
+                                </div>
+                            </td>
+                            <td className="p-3">{formatDate(todo.due_at)}</td>
+                            <td className='p-3'><Status status={todo.completed}/></td>
+                            <td className="p-3">
+                                <div className="space-x-3">
+                                    <button className="bg-purple-200 p-1 rounded text-purple-400" onClick={() => handleEdit(todo)}>
                                         <BiEditAlt/>
                                     </button>
-                                    <button>
+                                    <button className="bg-red-200 p-1 rounded text-red-400" onClick={() => handleDelete(todo.id)}>
                                         <MdDeleteForever/>
                                     </button>
                                 </div>
@@ -83,6 +107,16 @@ export default function Dashboard(){
                     ))}
                 </tbody>
             </table>
+
+            {showform && 
+                <TodoForm 
+                    onClose={()=> {
+                        setShowForm(false)
+                        setEditingTodo(null)
+                    }}
+                    editingTodo={editingTodo}
+                />
+            }
         </div>
     )
 }
