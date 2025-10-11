@@ -43,7 +43,7 @@ export default function Sidebar({user,onClose}){
             <span><SlCalender /></span>
             Calender
           </Link>
-          <Link href="/todos" className="flex items-center gap-2">
+          <Link href="/dashboard/todos" className="flex items-center gap-2">
             <span><RiCalendarTodoLine /></span>
             To do List 
           </Link>

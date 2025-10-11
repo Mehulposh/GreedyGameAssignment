@@ -1,28 +1,24 @@
 "use client"
-
-import TodoStore from "@/store/TodoStore"
-import { useEffect,useState } from "react"
-import TodoForm from '@/components/TodoForm'
-import NotificationDrawer from '@/components/NotificationDrawer'
+import { useState,useEffect } from "react";
 import AuthStore from "@/store/AuthStore"
 import { CiFilter } from "react-icons/ci";
 import { BiEditAlt } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
 import Status from "@/components/Badge"
-import TotalTodos from "@/components/TotalTodos"
-import DateFormater from "@/utils/DateFormater"
+import TodoForm from '@/components/TodoForm'
+import TodoStore from "@/store/TodoStore";
+import DateFormater from "@/utils/DateFormater";
 
 
-
-export default function Dashboard(){
-     const {user}  = AuthStore()
-    const {todos,fetchTodos,updateTodo,deleteTodo} = TodoStore();
+export default function TodoList(){
+    const {todos,deleteTodo,fetchTodos} = TodoStore();
     const [showform,setShowForm] = useState(false);
     const [editingTodo, setEditingTodo] = useState(null)
 
-    console.log(user);
-    console.log(todos);
-    
+    useEffect(() => {
+        fetchTodos()
+    },[])
+
     const handleDelete = async (id) => {
          if (confirm('Are you sure you want to delete this todo?')) {
             await deleteTodo(id)
@@ -33,25 +29,9 @@ export default function Dashboard(){
         setEditingTodo(todo)
         setShowForm(true)
     }
-    
-    useEffect(() => {
-        fetchTodos()
-    },[])
 
-
-    return (
-        <div className="px-5 bg-gray-200 h-screen">
-            <div className="flex justify-between items-center pt-5">
-                <h1 className="text-2xl font-semibold">Hello, {user?.user_metadata?.name }</h1>
-                <p>
-                    Last Login time :
-                    <span>
-                        {DateFormater(user.last_sign_in_at)}
-                    </span> 
-                </p>
-            </div>
-
-            <TotalTodos />
+    return(
+        <div className="p-5">
             <div className="flex justify-between items-center mt-5 ">
                 <h1 className="text-xl font-semibold">All Todos</h1>
                 <div className="space-x-5 flex items-center">
@@ -61,13 +41,14 @@ export default function Dashboard(){
                     </button>
                     <button 
                         onClick={() => setShowForm(prev => !prev)}
-                        className="bg-green-600  px-2 py-2 text-white text-sm rounded ">
+                        className="bg-green-600  px-2 py-2 text-white text-sm rounded "
+                    >
                         <span> + </span> 
                         Add Todo
                     </button>
                 </div>
             </div>
-
+            
             <table className="w-full bg-white  text-sm mt-5 rounded shadow">
                 <thead>
                     <tr className="text-left border-b text-gray-400">
@@ -83,7 +64,7 @@ export default function Dashboard(){
                             <td className="p-3">
                                 <div>
                                     <p>{todo.title}</p>
-                                     <p className="text-sm text-gray-400">{todo.description}</p>
+                                    <p className="text-sm text-gray-400">{todo.description}</p>
                                 </div>
                             </td>
                             <td className="p-3">{DateFormater(todo.due_at)}</td>
@@ -102,16 +83,16 @@ export default function Dashboard(){
                     ))}
                 </tbody>
             </table>
-
-            {showform && 
-                <TodoForm 
-                    onClose={()=> {
-                        setShowForm(false)
-                        setEditingTodo(null)
-                    }}
-                    editingTodo={editingTodo}
-                />
-            }
+            
+        {showform && 
+            <TodoForm 
+                onClose={()=> {
+                    setShowForm(false)
+                    setEditingTodo(null)
+                }}
+                editingTodo={editingTodo}
+            />
+        }
         </div>
     )
 }

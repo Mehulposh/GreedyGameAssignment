@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import useTodoStore from "@/store/TodoStore";
+import TodoStore from "@/store/TodoStore";
 import { formatDistanceToNow } from "date-fns";
 import { RiCloseLargeLine } from "react-icons/ri";
 
 export default function NotificationDrawer({onClose}) {
-  const { todos } = useTodoStore();
+  const { todos } = TodoStore();
   
   const upcoming = todos.filter((t) => {
     const hoursDiff = (new Date(t.due_at) - new Date()) / (1000 * 60 * 60);
@@ -13,7 +13,7 @@ export default function NotificationDrawer({onClose}) {
   });
 
   return (
-    <div className="relative">
+    <div>
 
       
         <div className="absolute right-0 top-0 h-screen w-90 bg-white border rounded shadow-lg p-4 z-10">
