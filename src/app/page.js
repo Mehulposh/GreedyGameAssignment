@@ -34,7 +34,7 @@ export default function Login(){
         <h4 className="font-bold text-lg">GREEDYGAME</h4>
         <h1 className="font-semibold text-4xl">Welcome to GGTodo</h1>
         <p className="text-sm">To get started, please sign in</p>
-        <button onClick={googleLogin} className="flex items-center justify-center gap-3 font-medium border rounded-lg w-96 py-3">
+        <button onClick={googleLogin} className="flex items-center justify-center gap-3 font-medium ring-1 ring-black/8 rounded-lg w-96 py-3">
           <img src='/google.png' alt="google login" className="size-5"/>
           Log in with Google
         </button>
@@ -48,7 +48,7 @@ export default function Login(){
             <input 
               type="email"
               placeholder="Enter your registered email"
-              className="py-3 rounded-lg px-2 border"
+              className="py-3 rounded-lg px-2 ring-1 ring-black/8"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
@@ -58,7 +58,7 @@ export default function Login(){
             <input 
               type="password"
               placeholder="Enter your password"
-              className="py-3 rounded-lg px-2 border w-full"
+              className="py-3 rounded-lg px-2 ring-1 ring-black/8 w-full"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />

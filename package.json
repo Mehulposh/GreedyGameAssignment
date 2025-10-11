@@ -11,6 +11,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.75.0",
     "@tailwindcss/postcss": "^4.1.14",
+    "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "next": "15.5.4",
     "postcss": "^8.5.6",
