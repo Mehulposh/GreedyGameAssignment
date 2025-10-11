@@ -16,7 +16,7 @@ export default function Dashboard(){
     return (
         <div>
             <div>
-                <h1>My Todos</h1>
+                <h1>All Todos</h1>
             </div>
         </div>
     )

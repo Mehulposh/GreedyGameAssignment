@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import Sidebar from '@/components/Sidebar'
 import AuthStore from "@/store/AuthStore"
 import { useRouter } from "next/navigation"
+import Header from "@/components/Header"
 
 export default function DashboardLayout({children}){
     const {user, fetchUser, loading} = AuthStore();
@@ -12,7 +13,7 @@ export default function DashboardLayout({children}){
     useEffect(()=> {
         fetchUser();
     },[]);
-
+    
     useEffect(() => {
         if(!loading && !user){
             router.push('/')
@@ -23,9 +24,14 @@ export default function DashboardLayout({children}){
 
     if(!user) return null
 
+    // console.log(user.email);                    // "mehulposhattiwar4995@gmail.com"
+    // console.log(user.user_metadata.name);       // "Mehul"
+    // console.log(user.user_metadata.role);       // "user"
+    // console.log(user.id);  
+    
     return(
         <div>
-            <Sidebar />
+            <Header user = {user}/>
             <main>
                 {children}
             </main>
