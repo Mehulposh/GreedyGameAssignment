@@ -5,6 +5,11 @@ import { supabase } from "@/lib/supabaseClient"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { SlCalender } from "react-icons/sl";
+import { RiCalendarTodoLine } from "react-icons/ri";
+
+
 
 
 export default function Sidebar({user,onClose}){
@@ -18,10 +23,7 @@ export default function Sidebar({user,onClose}){
     })();
   }, [user]);
 
-  const logout = async () => {
-    await supabase.auth.signOut();
-    router.push("/");
-  };
+  
 
 
   return (
@@ -32,15 +34,23 @@ export default function Sidebar({user,onClose}){
             <span onClick={onClose}><MdOutlineKeyboardDoubleArrowLeft /></span>
         </h2>
 
-        <nav className="space-y-3">
-          <Link href="/dashboard">My Todos</Link>
-          <Link href="/dashboard/profile">Profile</Link>
+        <nav className="space-y-3 flex flex-col justify-center items-center">
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <span><TbLayoutDashboardFilled /></span>
+            Dashboard
+          </Link>
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <span><SlCalender /></span>
+            Calender
+          </Link>
+          <Link href="/todos" className="flex items-center gap-2">
+            <span><RiCalendarTodoLine /></span>
+            To do List 
+          </Link>
           {role === "superuser" && <Link href="/dashboard/admin/users">User Management</Link>}
         </nav>
       </div>
-      <button onClick={logout} className="m-4 bg-red-500 text-white py-2 rounded">
-        Logout
-      </button>
+     
     </aside>
   );
 }
