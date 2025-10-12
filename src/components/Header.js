@@ -58,11 +58,11 @@ export default function Header({user}){
                 <h2 className="font-bold cursor-pointer " onClick={() => setOpenSiderbar(prev => !prev)}>
                     GREEDYGAME
                 </h2>
-                <div className="bg-gray-200 px-1 w-full flex items-center gap-2 rounded-lg">
+                <div className="bg-gray-200 px-1 flex items-center gap-2 rounded-lg">
                     <CiSearch />
 
                     <input 
-                        className=" py-2 rounded-lg"
+                        className=" py-2 rounded-lg  px-2"
                         placeholder="Search"
                     
                     />
