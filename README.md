@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Greedy Game Assignment- User Management and Todo 
 
-## Getting Started
+A User Management Dashboard  using Next.js and TailwindCSS and using Supabase for backend  having capability of adding new todos and profile (image,name,email) details and updating them , also having a super user dashboard which can do everything of regulsr user but also change the role of any registerd user from regular user to super user or vise-versa
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- Frontend:
+
+      Next.js
+      Tailwind CSS
+
+- Deployment:
+
+      Frontend: Vercel
+      Backend: Supabase
+
+# ⚙️ Setup Instructions
+
+1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/Mehulposh/GreedyGameAssignment
+cd GreedyGameAssignment
+```
+
+2️⃣ Backend Setup
+  
+    Use Supabase or Firebase for backend
+
+3️⃣ Frontend Setup
+
+```bash
+npm install
+```
+
+Run the frontend:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deploy frontend on Vercel and backend on Render (or any other platform).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Rgular User
 
-## Learn More
+      1. Add new todo 
+      2. View todo details
+      3. Edit existing todo and profile deatails
+      4. Delete todo
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Super User
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+      1. Add new todo 
+      2. View todo details
+      3. Edit existing todo and profile deatails
+      4. Delete todo
+      5. Change role of all users 
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 🔮 Future Improvements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    1. Search todo and users by title or  name/email 
+    2. Responsive design improvements
