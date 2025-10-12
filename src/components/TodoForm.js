@@ -77,7 +77,7 @@ export default function TodoForm({onClose,editingTodo}){
         <div className=" absolute right-0 top-0 h-screen w-1/3 bg-white p-5 space-y-5 ">
                     <div className="flex justify-between items-center  font-semibold text-xl">
                         <h2>Add Todo</h2>
-                        <button onClick={onClose}>
+                        <button onClick={onClose} className="cursor-pointer">
                             X
                         </button>
                     </div>
@@ -86,7 +86,7 @@ export default function TodoForm({onClose,editingTodo}){
                         <label className="flex flex-col gap-2">
                             <p>Title<span className="text-red-500">*</span></p>
                             <input 
-                                className="py-3 rounded-lg px-2 ring-1 ring-black/8"
+                                className="cursor-pointer py-3 rounded-lg px-2 ring-1 ring-black/8"
                                 placeholder="Enter Title"
                                 value={formData.title}
                                 onChange={(e)=> {setFormData({...formData,title: e.target.value})}}
@@ -95,7 +95,7 @@ export default function TodoForm({onClose,editingTodo}){
                         <label className="flex flex-col gap-2">
                             <p>Description<span className="text-red-500">*</span></p>
                             <textarea 
-                                className="py-3 rounded-lg px-2 ring-1 ring-black/8"
+                                className="cursor-pointer py-3 rounded-lg px-2 ring-1 ring-black/8"
                                 placeholder="Enter Description"
                                 value={formData.description}
                                 onChange={(e)=> {setFormData({...formData,description: e.target.value})}}
@@ -106,7 +106,7 @@ export default function TodoForm({onClose,editingTodo}){
                             <input 
                                 type="date"
                                 placeholder="Choose Due Date"
-                                className="py-3 rounded-lg px-2 ring-1 ring-black/8"
+                                className="cursor-pointer py-3 rounded-lg px-2 ring-1 ring-black/8"
                                 value={formData.due_at}
                                 onChange={(e)=> {setFormData({...formData,due_at: e.target.value})}}
                             />
@@ -116,7 +116,7 @@ export default function TodoForm({onClose,editingTodo}){
                             <input 
                                 type="time"
                                 placeholder="Choose Due Time"
-                                className="py-3 rounded-lg px-2 ring-1 ring-black/8"
+                                className="cursor-pointer py-3 rounded-lg px-2 ring-1 ring-black/8"
                                 value={formData.time}
                                 onChange={(e)=> {setFormData({...formData,time: e.target.value})}}
                             />
@@ -126,7 +126,7 @@ export default function TodoForm({onClose,editingTodo}){
                             <button
                             type="submit" 
                             disabled={loading}
-                            className="bg-green-600 text-white py-3 px-3 rounded-lg text-sm"
+                            className="bg-green-600 text-white py-3 px-3 rounded-lg text-sm cursor-pointer"
                             >
                                 {editingTodo ? 'Update' : ' + Create Todo'}
                             </button>

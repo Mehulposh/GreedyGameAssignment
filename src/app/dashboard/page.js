@@ -102,13 +102,13 @@ export default function Dashboard(){
                 </div>
                 
                 <div className="space-x-5 flex items-center">
-                    <button className="border border-black/12 flex justify-around items-center text-sm rounded px-4 py-2">
+                    <button className="border border-black/12 flex justify-around items-center text-sm rounded px-4 py-2 cursor-pointer ">
                         <CiFilter className="text-green-300 font-bold text-lg"/>
                         Filter
                     </button>
                     <button 
                         onClick={() => setShowForm(prev => !prev)}
-                        className="bg-green-600  px-2 py-2 text-white text-sm rounded ">
+                        className="bg-green-600  px-2 py-2 text-white text-sm rounded cursor-pointer ">
                         <span> + </span> 
                         Add Todo
                     </button>
@@ -119,8 +119,8 @@ export default function Dashboard(){
                 <thead >
                     <tr className="text-left bg-gray-200 text-gray-500 ">
                         <th className="p-3">Todo</th>
-                        <th className="p-3">Due Date</th>
-                        <th className="p-3">Status</th>
+                        <th className="p-3">Due Date ⇅</th>
+                        <th className="p-3">Status ⇅</th>
                         <th className="p-3">Actions</th>
                     </tr>
                 </thead>
@@ -137,10 +137,10 @@ export default function Dashboard(){
                             <td className='p-3'><Status status={todo.completed}/></td>
                             <td className="p-3">
                                 <div className="space-x-3">
-                                    <button className="bg-purple-200 p-1 rounded text-purple-400" onClick={() => handleEdit(todo)}>
+                                    <button className="bg-purple-200 p-1 cursor-pointer rounded text-purple-400" onClick={() => handleEdit(todo)}>
                                         <BiEditAlt/>
                                     </button>
-                                    <button className="bg-red-200 p-1 rounded text-red-400" onClick={() => handleDelete(todo.id)}>
+                                    <button className="bg-red-200 p-1 rounded text-red-400 cursor-pointer " onClick={() => handleDelete(todo.id)}>
                                         <MdDeleteForever/>
                                     </button>
                                 </div>

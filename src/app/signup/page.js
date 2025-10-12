@@ -38,7 +38,7 @@ export default function Signup(){
             You’re one click away from less busywork
         </h1>
         
-        <button  className="flex items-center justify-center gap-3 font-medium ring-1 ring-black/8 rounded-lg w-96 py-3">
+        <button  className="cursor-pointer flex items-center justify-center gap-3 font-medium ring-1 ring-black/8 rounded-lg w-96 py-3">
           <img src='/google.png' alt="google login" className="size-5"/>
           Log in with Google
         </button>
@@ -52,7 +52,7 @@ export default function Signup(){
             <input 
               type="text"
               placeholder="Enter your name"
-              className="py-3 rounded-lg px-2 ring-1 ring-black/8"
+              className="py-3 rounded-lg px-2 ring-1 ring-black/8 cursor-pointer"
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
@@ -62,7 +62,7 @@ export default function Signup(){
             <input 
               type="email"
               placeholder="Enter your  email"
-              className="py-3 rounded-lg px-2 ring-1 ring-black/8"
+              className="py-3 rounded-lg px-2 ring-1 ring-black/8 cursor-pointer"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
@@ -72,23 +72,29 @@ export default function Signup(){
             <input 
               type="password"
               placeholder="Minimum 8 Characters"
-              className="py-3 rounded-lg px-2 ring-1 ring-black/8 w-full"
+              className="py-3 rounded-lg px-2 ring-1 ring-black/8 w-full cursor-pointer"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
           </label>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 cursor-pointer">
                <input type="checkbox" /> 
                <p className="text-sm">Agree to Terms of Service and Privacy Policy</p>
             </div>
 
           <button 
             type="submit"
-            className="bg-green-600 text-white py-3 rounded-lg text-sm">
+            className="bg-green-600 text-white py-3 rounded-lg text-sm cursor-pointer">
             Get Started
           </button>
         </form>
+        <button 
+          onClick={() => router.push('/')}
+          className="text-sm text-gray-400 border-b cursor-pointer"
+        >
+          Login
+        </button>
         {error && <p className="text-red-500 mt-2">{error}</p>}
       </div>
     </div>

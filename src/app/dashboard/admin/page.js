@@ -17,13 +17,13 @@ export default function AdminDashboard(){
                 <div className="text-gray-300 flex flex-col items-center gap-5 ">
                     <button 
                         onClick={() => setToDisplay("dashboard")}
-                        className="flex items-center justify-start font-md text-sm gap-2 py-3 px-4 w-2/3 rounded-lg hover:bg-slate-700 hover:text-emerald-400 transition-colors">
+                        className="cursor-pointer flex items-center justify-start font-md text-sm gap-2 py-3 px-4 w-2/3 rounded-lg hover:bg-slate-700 hover:text-emerald-400 transition-colors">
                         <TbLayoutDashboardFilled  />
                         Dashboard
                     </button>
                     <button
                         onClick={() => setToDisplay("users")}
-                        className="flex items-center justify-start font-md text-sm gap-2 py-3 px-4 w-2/3 rounded-lg hover:bg-slate-700 hover:text-emerald-400 transition-colors">
+                        className="cursor-pointer flex items-center justify-start font-md text-sm gap-2 py-3 px-4 w-2/3 rounded-lg hover:bg-slate-700 hover:text-emerald-400 transition-colors">
 
                         <TbUsers/>
                         Users

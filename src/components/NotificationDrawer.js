@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import TodoStore from "@/store/TodoStore";
-import { formatDistanceToNow } from "date-fns";
 import { RiCloseLargeLine } from "react-icons/ri";
 import NotificationCard from "./NotificationCard";
 
@@ -25,7 +24,7 @@ export default function NotificationDrawer({onClose}) {
         <div className=" bg-white w-1/3 ring-1 ring-black/8 space-y-4 rounded p-4 z-10">
           <h3 className="text-lg font-semibold mb-2 flex justify-between items-center">
             All Notifiactions
-            <span onClick={onClose}><RiCloseLargeLine /></span>    
+            <span onClick={onClose} className="cursor-pointer"><RiCloseLargeLine /></span>    
           </h3>
           {upcoming.length === 0 && (
             <p className="text-sm text-gray-500">

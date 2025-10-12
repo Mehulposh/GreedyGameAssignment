@@ -99,10 +99,16 @@ export default function Login(){
 
           <button 
             type="submit"
-            className="bg-green-600 text-white py-3 rounded-lg text-sm">
+            className="bg-green-600 text-white py-3 rounded-lg text-sm cursor-pointer">
             Login
           </button>
         </form>
+        <button 
+          onClick={() => router.push('/signup')}
+          className="text-sm text-gray-400 border-b cursor-pointer"
+        >
+          Sign Up
+        </button>
         {error && <p className="text-red-500 mt-2">{error}</p>}
       </div>
     </div>

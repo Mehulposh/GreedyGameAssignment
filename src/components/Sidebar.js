@@ -21,25 +21,28 @@ export default function Sidebar({user,onClose}){
       <div className="p-4">
         <h2 className="text-xl font-bold mb-6 flex justify-between  items-center">
             GREEDYGAME
-            <span onClick={onClose}><MdOutlineKeyboardDoubleArrowLeft /></span>
+            <span onClick={onClose}><MdOutlineKeyboardDoubleArrowLeft className="cursor-pointer "/></span>
         </h2>
 
-        <nav className="space-y-3 flex flex-col justify-center items-center">
-          <button className="flex items-center gap-2 hover:text-white hover:bg-green-400 hover:rounded-lg hover:p-2" onClick={() => router.push('/dashboard')}>
+        <div className="space-y-3 flex flex-col justify-center items-center">
+          <button className="cursor-pointer flex items-center gap-2 p-2 hover:text-white hover:bg-green-400 hover:rounded-lg " 
+            onClick={() => {user === 'user' ? router.push('/dashboard') : router.push('/dashboard/admin')}}>
             
             <span><TbLayoutDashboardFilled /></span>
             Dashboard
           </button>
-          <button className="flex items-center gap-5 hover:text-white hover:bg-green-400 hover:rounded-lg hover:p-2" onClick={() => router.push('/dashboard')}>            
+          <button className="cursor-pointer flex items-center gap-5 hover:text-white hover:bg-green-400 hover:rounded-lg p-2" 
+            onClick={() => {user === 'user' ? router.push('/dashboard') : router.push('/dashboard/admin')}}>            
             <span><RiCalendarTodoLine /></span>
             Calender
           </button>
-          <button className="flex items-center gap-4 hover:text-white hover:bg-green-400 hover:rounded-lg hover:p-2" onClick={() => router.push('/dashboard/todos')}>
+          <button className="cursor-pointer flex items-center gap-4 hover:text-white hover:bg-green-400 hover:rounded-lg p-2" 
+            onClick={() => router.push('/dashboard/todos')}>
             <span><TbLayoutDashboardFilled /></span>
             To Do List
           </button>
-          {user === "super_user" && <Link href="/dashboard/admin">User Management</Link>}
-        </nav>
+          
+        </div>
       </div>
      
     </aside>

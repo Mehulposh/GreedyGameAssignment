@@ -139,7 +139,7 @@ export default function Profile({onClose}){
                 <p className="text-2xl font-semibold ">Profile</p>
                 <button 
                     onClick={onClose}
-                    className="text-xl text-gray-400 font-semibold "
+                    className="text-xl text-gray-400 font-semibold cursor-pointer "
                 >
                     X
                 </button>
@@ -164,7 +164,7 @@ export default function Profile({onClose}){
 
                     <div className="absolute top-0 left-15 bg-purple-300 rounded-full p-1" >
                         <label>
-                            <BiEditAlt className="text-purple-500" />
+                            <BiEditAlt className="text-purple-500 cursor-pointer " />
                             <input
                                 type="file"
                                 accept="image/*"
@@ -190,7 +190,7 @@ export default function Profile({onClose}){
                     <p className="text-md font-semibold">Name</p>
                     <input 
                         placeholder="Write name"
-                        className="ring-1 ring-black/8 text-md  px-2 py-3 rounded-lg w-full"
+                        className="ring-1 ring-black/8 text-md  px-2 py-3 rounded-lg w-full cursor-pointer "
                         value={profile.name}
                         onChange={(e) => setProfile({...profile,name: e.target.value})}
                     />
@@ -198,7 +198,7 @@ export default function Profile({onClose}){
                 <label className="flex flex-col items-start gap-3">
                     <p className="text-md font-semibold">Email</p>
                     <input 
-                        className="ring-1 ring-black/8 text-md  px-2 py-3 rounded-lg w-full"
+                        className="ring-1 ring-black/8 text-md  px-2 py-3 rounded-lg w-full cursor-pointer "
                         value={profile.email}
                         onChange={(e) => setProfile({...profile,email: e.target.value})}
                     />
@@ -207,7 +207,7 @@ export default function Profile({onClose}){
                 <button 
                     type="submit"
                     disabled={saving}
-                    className="bg-green-100 text-green-700 w-full py-3 rounded-lg text-md font-semibold"
+                    className="bg-green-100 text-green-700 w-full py-3 rounded-lg text-md font-semibold cursor-pointer "
                 >
                      {saving ? 'Updating...' : 'Update Profile'}
                 </button>
@@ -217,7 +217,7 @@ export default function Profile({onClose}){
             </div>
 
             <button 
-                className="flex items-center justify-center w-full gap-3 font-semibold" 
+                className="flex items-center justify-center w-full gap-3 font-semibold cursor-pointer " 
                 onClick={() => router.push('/')}
             >
                 <IoIosLogOut className="text-gray-400"/>

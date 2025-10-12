@@ -74,10 +74,10 @@ export default function TodoList(){
                             <td className='p-3'><Status status={todo.completed}/></td>
                             <td className="p-3">
                                 <div className="space-x-3">
-                                    <button className="bg-purple-200 p-1 rounded text-purple-400" onClick={() => handleEdit(todo)}>
+                                    <button className="bg-purple-200 p-1 rounded text-purple-400 cursor-pointer " onClick={() => handleEdit(todo)}>
                                         <BiEditAlt/>
                                     </button>
-                                    <button className="bg-red-200 p-1 rounded text-red-400" onClick={() => handleDelete(todo.id)}>
+                                    <button className="bg-red-200 p-1 rounded text-red-400 cursor-pointer " onClick={() => handleDelete(todo.id)}>
                                         <MdDeleteForever/>
                                     </button>
                                 </div>

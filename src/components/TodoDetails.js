@@ -36,10 +36,10 @@ export default function TodoDetails({todo,onClose,handleEdit,handleDelete}){
                 </div>
 
                 <div className="space-x-3 mt-5">
-                    <button  onClick={() => handleEdit(todo)}>
+                    <button  onClick={() => handleEdit(todo)} className='cursor-pointer'>
                         <BiEditAlt className='size-6 text-gray-400'/>
                     </button>
-                    <button onClick={() => handleDelete(todo.id)}>
+                    <button onClick={() => handleDelete(todo.id)} className='cursor-pointer'>
                         <MdDeleteForever className='size-6 text-gray-400'/>
                     </button>
                 </div>

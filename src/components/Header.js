@@ -55,7 +55,7 @@ export default function Header({user}){
     <>
         <nav className="relative flex justify-between items-center p-4 bg-white">
             <div className="w-1/3 flex gap-10 justify-between items-center">
-                <h2 className="font-bold " onClick={() => setOpenSiderbar(prev => !prev)}>
+                <h2 className="font-bold cursor-pointer " onClick={() => setOpenSiderbar(prev => !prev)}>
                     GREEDYGAME
                 </h2>
                 <div className="bg-gray-200 px-1 w-full flex items-center gap-2 rounded-lg">
@@ -70,11 +70,11 @@ export default function Header({user}){
             </div>
 
             <div className="flex gap-4 items-center">
-                <button onClick={() => setOpenNotification(prev => !prev)} >
+                <button onClick={() => setOpenNotification(prev => !prev)} className="cursor-pointer " >
                     <IoIosNotificationsOutline  className="w-7 h-7"/>
                 </button>
 
-                <div className="flex items-center" onClick={() => setOpenProfile(prev => !prev)}>
+                <div className="flex items-center cursor-pointer " onClick={() => setOpenProfile(prev => !prev)}>
                     {
                         user.user_metadata.avatar_url
                         ? <img src={user.user_metadata.avatar_url} className="size-12 rounded-full" />
@@ -89,12 +89,12 @@ export default function Header({user}){
         {openProfile && (
             <div>
                 <div className="absolute right-15 top-10 flex flex-col items-start gap-4  bg-white py-4 px-6 rounded-xl w-50 text-sm ring-black/10">
-                    <button onClick={() => setOpenProfilePage(true)} className="flex items-center gap-2">
+                    <button onClick={() => setOpenProfilePage(true)} className="cursor-pointer flex items-center gap-2">
                     <IoPersonSharp className="text-gray-500"/>
                     Profile
                     </button>
                 
-                    <button onClick={logout} className="flex items-center gap-2">
+                    <button onClick={logout} className="flex items-center gap-2 cursor-pointer ">
                         <IoIosLogOut className="text-gray-500" />
                         Logout
                     </button>
