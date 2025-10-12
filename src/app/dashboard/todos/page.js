@@ -38,13 +38,13 @@ export default function TodoList(){
             <div className="flex justify-between items-center mt-5 ">
                 <h1 className="text-xl font-semibold">All Todos</h1>
                 <div className="space-x-5 flex items-center">
-                    <button className="border border-black/12 flex justify-around items-center text-sm rounded px-4 py-2">
+                    <button className="cursor-pointer border border-black/12 flex justify-around items-center text-sm rounded px-4 py-2">
                         <CiFilter className="text-green-300 font-bold text-lg"/>
                         Filter
                     </button>
                     <button 
                         onClick={() => setShowForm(prev => !prev)}
-                        className="bg-green-600  px-2 py-2 text-white text-sm rounded "
+                        className="bg-green-600  px-2 py-2 text-white text-sm rounded cursor-pointer"
                     >
                         <span> + </span> 
                         Add Todo
