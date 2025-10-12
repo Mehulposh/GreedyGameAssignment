@@ -3,7 +3,7 @@
 import TodoStore from "@/store/TodoStore"
 import { useEffect,useState } from "react"
 import TodoForm from '@/components/TodoForm'
-import NotificationDrawer from '@/components/NotificationDrawer'
+import { supabase } from "@/lib/supabaseClient"
 import AuthStore from "@/store/AuthStore"
 import { CiFilter } from "react-icons/ci";
 import { BiEditAlt } from "react-icons/bi";
@@ -11,18 +11,16 @@ import { MdDeleteForever } from "react-icons/md";
 import Status from "@/components/Badge"
 import TotalTodos from "@/components/TotalTodos"
 import DateFormater from "@/utils/DateFormater"
+import { useRouter } from "next/navigation"
 
 
 
 export default function Dashboard(){
+    const router = useRouter()
      const {user}  = AuthStore()
-    const {todos,fetchTodos,updateTodo,deleteTodo} = TodoStore();
+    const {todos,fetchTodos,deleteTodo} = TodoStore();
     const [showform,setShowForm] = useState(false);
     const [editingTodo, setEditingTodo] = useState(null);
-    
-
-    console.log(user);
-    console.log(todos);
     
     const handleDelete = async (id) => {
          if (confirm('Are you sure you want to delete this todo?')) {
@@ -36,6 +34,30 @@ export default function Dashboard(){
         setShowForm(true)
     }
     
+     useEffect(() => {
+        const checkRole = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                router.push("/");
+                return;
+            }
+
+            const { data: profile } = await supabase
+                .from("profiles")
+                .select("role")
+                .eq("id", user.id)
+                .single();
+
+            // Redirect super_user away from regular dashboard
+            if (profile?.role === "super_user") {
+                router.push("/dashboard/admin");
+            }
+        };
+
+        checkRole();
+    }, [router]);
+
+
     useEffect(() => {
         fetchTodos()
         

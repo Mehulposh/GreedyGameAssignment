@@ -13,18 +13,8 @@ import { RiCalendarTodoLine } from "react-icons/ri";
 
 
 export default function Sidebar({user,onClose}){
-    const [role, setRole] = useState("user");
+    
   const router = useRouter();
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await supabase.from("profiles").select("role").eq("id", user.id).single();
-      if (data) setRole(data.role);
-    })();
-  }, [user]);
-
-  
-
 
   return (
     <aside className="w-64 absolute left-0 top-0 bg-white shadow-md h-screen flex flex-col justify-between">
@@ -48,7 +38,7 @@ export default function Sidebar({user,onClose}){
             <span><TbLayoutDashboardFilled /></span>
             To Do List
           </button>
-          {role === "superuser" && <Link href="/dashboard/admin/users">User Management</Link>}
+          {user === "super_user" && <Link href="/dashboard/admin">User Management</Link>}
         </nav>
       </div>
      

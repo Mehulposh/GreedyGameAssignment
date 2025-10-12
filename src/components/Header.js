@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Sidebar from "./Sidebar"
 import { useRouter } from "next/navigation"
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -15,10 +15,9 @@ import Profile from "@/app/dashboard/profile/page";
 
 
 export default function Header({user}){
-    console.log('header',user);
-    
+        
     const router = useRouter();
-    
+    const [userRole, setUserRole] = useState('')
     const [openNotification,setOpenNotification] = useState(false)
     const [oepnSidebar,setOpenSiderbar] = useState(false)
     const [openProfile, setOpenProfile] = useState(false)
@@ -28,6 +27,30 @@ export default function Header({user}){
         await supabase.auth.signOut();
         router.push("/");
     };
+
+   useEffect(() => {
+        const fetchRole = async () => {
+            const { data: profile, error: profileError } = await supabase
+                .from("profiles")
+                .select("role")
+                .eq("id", user.id)
+                .single();
+            
+            if (profileError) {
+                console.error("Profile fetch error:", profileError);
+                return;
+            }
+            
+            // Move setUserRole inside the async function
+            setUserRole(profile?.role || '');
+        }
+
+        if (user?.id) {
+            fetchRole();
+        }
+    }, [user])
+
+
     return(
     <>
         <nav className="relative flex justify-between items-center p-4 bg-white">
@@ -53,7 +76,7 @@ export default function Header({user}){
 
                 <div className="flex items-center" onClick={() => setOpenProfile(prev => !prev)}>
                     {
-                        user 
+                        user.user_metadata.avatar_url
                         ? <img src={user.user_metadata.avatar_url} className="size-12 rounded-full" />
                         : <IoPersonSharp className="w-10 h-10 rounded-full"/>
                     }
@@ -78,8 +101,8 @@ export default function Header({user}){
                 </div>
             </div>
         )}
-        {openProfilePage && <Profile />}
-        {oepnSidebar && <Sidebar user={user}  onClose={()=> setOpenSiderbar(false)}/>}
+        {openProfilePage && <Profile onClose={() =>{ setOpenProfilePage(false),setOpenProfile(false)}}/>}
+        {oepnSidebar && <Sidebar user={userRole}  onClose={()=> setOpenSiderbar(false)}/>}
         {openNotification && <NotificationDrawer onClose={() => setOpenNotification(false)} />}
     </>
     )

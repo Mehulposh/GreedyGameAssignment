@@ -8,9 +8,9 @@ import TotalTodos from "@/components/TotalTodos";
 import { IoIosLogOut } from "react-icons/io";
 import { useRouter } from "next/navigation";
 
-export default function Profile(){
+export default function Profile({onClose}){
     const router  = useRouter();
-    const {user , refetchProfile} = AuthStore()
+    const {user } = AuthStore()
     const [loading,setLoading] = useState(false);
     const [uploading,setUploading] = useState(false);
     const [saving,setSaving] = useState(false);
@@ -83,7 +83,7 @@ export default function Profile(){
 
             if(updateError) throw updateError;
 
-            await refetchProfile()
+            // await refetchProfile()
 
             setProfile({ ...profile, avatar_url: publicUrl });
             alert('Avatar updated successfully!');
@@ -114,9 +114,7 @@ export default function Profile(){
 
             if(error) throw error
 
-            alert('Profile Updated Successfully');
-            console.log(profile);
-            
+            alert('Profile Updated Successfully');            
             
         } catch (error) {
             console.log('Error updating profile',error);
@@ -140,6 +138,7 @@ export default function Profile(){
             <div className="flex justify-between items-center">
                 <p className="text-2xl font-semibold ">Profile</p>
                 <button 
+                    onClick={onClose}
                     className="text-xl text-gray-400 font-semibold "
                 >
                     X
@@ -180,7 +179,7 @@ export default function Profile(){
 
                 <div className="space-y-3">
                     <p className="bg-yellow-100 text-yellow-600 w-1/2 px-1 py-2 rounded-3xl flex justify-center items-center text-md">
-                        {profile.role || 'Role'}
+                        {profile.role ? (profile.role === "super_user" && 'Super User') : 'Role'}
                     </p>
                     <p className="text-gray-400">Joined On : {DateFormater(user.created_at)}</p>
                 </div>

@@ -13,11 +13,34 @@ export default function Login(){
 
    const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('login');
+    const { error , data} = await supabase.auth.signInWithPassword({ email, password });
     
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) setError(error.message);
-    else router.push("/dashboard");
+    
+    if (error) {
+      setError(error.message);
+      return;
+    };
+
+    // Fetch profile to get role
+    const user = data?.user;
+    
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single();
+
+    if(profileError){
+      console.log("Error fetching profile",profileError);
+      throw profileError
+      
+    }
+  
+    if (profile?.role === "super_user") {
+      router.push("/dashboard/admin");
+    } else {
+      router.push("/dashboard");
+    }
   };
 
    const googleLogin = async () => {

@@ -13,7 +13,7 @@ const AuthStore = create((set) => ({
       return set({ user: null, role: "user", loading: false });
     }
 
-    // ✅ Always fetch extended profile from `profiles` table
+    //  Always fetch extended profile from `profiles` table
     const { data: profile } = await supabase
       .from("profiles")
       .select("name, role, avatar_url")
@@ -40,30 +40,7 @@ const AuthStore = create((set) => ({
   }
 },
 
-  refetchProfile: async () => {
-    const { user } = get();
-    if (!user?.id) return;
-
-    try {
-      const { data: profile, error } = await supabase
-        .from("profiles")
-        .select("role, avatar_url") // add any fields you need
-        .eq("id", user.id)
-        .single();
-
-      if (!error && profile) {
-        set({
-          role: profile.role || "user",
-          // Note: we don't update `user` here, but you could extend `user` if needed
-        });
-
-        // Optional: update a separate `profile` field in store
-      }
-    } catch (err) {
-      console.error("Failed to refetch profile", err);
-    }
-  },
-
+ 
   logout: async () => {
     await supabase.auth.signOut();
     set({ user: null, role: "user" });

@@ -23,11 +23,6 @@ export default function DashboardLayout({children}){
     if(loading) return <p>Loading...</p>
 
     if(!user) return null
-
-    // console.log(user.email);                    // "mehulposhattiwar4995@gmail.com"
-    // console.log(user.user_metadata.name);       // "Mehul"
-    // console.log(user.user_metadata.role);       // "user"
-    // console.log(user.id);  
     
     return(
         <div>
