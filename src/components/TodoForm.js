@@ -1,6 +1,8 @@
 "use client"
 import TodoStore from "@/store/TodoStore";
 import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function TodoForm({onClose,editingTodo}){
     const {addTodo,updateTodo} = TodoStore()
@@ -74,7 +76,7 @@ export default function TodoForm({onClose,editingTodo}){
     }
 
     return(
-        <div className=" absolute right-0 top-0 h-screen w-1/3 bg-white p-5 space-y-5 ">
+        <div className=" absolute right-0 top-0 h-[100vh] w-1/3 bg-white p-5 space-y-5 ">
                     <div className="flex justify-between items-center  font-semibold text-xl">
                         <h2>Add Todo</h2>
                         <button onClick={onClose} className="cursor-pointer">
@@ -103,22 +105,27 @@ export default function TodoForm({onClose,editingTodo}){
                         </label>
                         <label className="flex flex-col gap-2">
                             <p>Due Date<span className="text-red-500">*</span></p>
-                            <input 
-                                type="date"
-                                placeholder="Choose Due Date"
-                                className="cursor-pointer py-3 rounded-lg px-2 ring-1 ring-black/8"
-                                value={formData.due_at}
-                                onChange={(e)=> {setFormData({...formData,due_at: e.target.value})}}
+                           
+                            <DatePicker
+                                className="cursor-pointer py-5  w-full rounded-lg px-2 ring-1 ring-black/8"
+                                showIcon
+                                selected={formData.due_at}
+                                onChange={(date) => {setFormData({...formData,due_at: date})}}
                             />
                         </label>
                         <label className="flex flex-col gap-2">
                             <p>Due Time<span className="text-red-500">*</span></p>
-                            <input 
-                                type="time"
-                                placeholder="Choose Due Time"
-                                className="cursor-pointer py-3 rounded-lg px-2 ring-1 ring-black/8"
-                                value={formData.time}
-                                onChange={(e)=> {setFormData({...formData,time: e.target.value})}}
+                            
+                             <DatePicker
+                                showIcon
+                                selected={formData.time}
+                                className="cursor-pointer py-5  w-full rounded-lg px-2 ring-1 ring-black/8"
+                                onChange={(date)=> {setFormData({...formData,time: date})}}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                timeIntervals={15}
+                                timeCaption="Time"
+                                dateFormat="h:mm aa"
                             />
                         </label>
 
@@ -133,6 +140,9 @@ export default function TodoForm({onClose,editingTodo}){
                         </div>
                     </form>
                    {error && <p className="text-red-500 mt-2">{error}</p>}
+
+
+                   
         </div>
     )
 }
