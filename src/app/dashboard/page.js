@@ -19,7 +19,7 @@ export default function Dashboard(){
     const {todos,fetchTodos,updateTodo,deleteTodo} = TodoStore();
     const [showform,setShowForm] = useState(false);
     const [editingTodo, setEditingTodo] = useState(null);
-    const [lastUpdated, setLastUpdated] = useState(null) ;
+    
 
     console.log(user);
     console.log(todos);
@@ -60,7 +60,7 @@ export default function Dashboard(){
 
 
     return (
-        <div className="px-5 bg-gray-200 h-screen">
+        <div className="px-5 bg-gray-200 h-full">
             <div className="flex justify-between items-center pt-5">
                 <h1 className="text-2xl font-semibold">Hello, {user?.user_metadata?.name }</h1>
                 <p>

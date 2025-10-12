@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 
-export default function TotalTodos(){
+export default function TotalTodos({profile}){
     const {todos} = TodoStore();
     const [allTodos,setAllTodos] = useState(0)
     const [completedTodos,setCompletedTodos] = useState(0)
@@ -26,7 +26,7 @@ export default function TotalTodos(){
     return(
         <div className="flex items-center bg-white py-5 px-4 mt-5 gap-10 rounded-lg ">
             <div className="text-center flex flex-col gap-4">
-                <p className="text-sm font-semibold  mb-1">
+                <p className={`font-semibold text-sm   mb-1 ${profile ? "text-gray-400" : ""}`}>
                     All Todos
                 </p>
                 <p className="text-2xl font-semibold ">{allTodos}</p>
@@ -35,7 +35,7 @@ export default function TotalTodos(){
             <div className="w-px h-20 bg-gray-300"></div>
     
             <div className="text-center flex flex-col gap-4">
-                <p className="text-sm font-semibold  mb-1">
+                <p className={`font-semibold text-sm  mb-1 ${profile ? "text-gray-400" : ""}`}>
                     Upcoming
                 </p>
                 <p className="text-2xl font-semibold ">{upCominTodos}</p>
@@ -44,7 +44,7 @@ export default function TotalTodos(){
             <div className="w-px h-20 bg-gray-300"></div>
     
             <div className="text-center flex flex-col gap-4">
-                <p className="text-sm font-semibold  mb-1">
+                <p className={`font-semibold text-sm   mb-1 ${profile ? "text-gray-400" : ""}`}>
                 Completed
                 </p>
                 <p className="text-2xl font-semibold ">{completedTodos}</p>
