@@ -44,7 +44,18 @@ export default function Login(){
   };
 
    const googleLogin = async () => {
-    await supabase.auth.signInWithOAuth({ provider: "google" });
+    const {data,error} = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+         redirectTo: `${window.location.origin}/dashboard`,
+      },
+    });
+
+     if (error) {
+    console.error("Google login error:", error.message);
+  } else {
+    console.log("Redirecting to Google...");
+  }
   };
 
   return(

@@ -24,7 +24,20 @@ export default function Signup(){
     else router.push('/dashboard')
   };
 
-   
+   const googleLogin = async () => {
+    const {data,error} = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+         redirectTo: `${window.location.origin}/dashboard`,
+      },
+    });
+
+     if (error) {
+    console.error("Google login error:", error.message);
+  } else {
+    console.log("Redirecting to Google...");
+  }
+  };
 
   return(
      <div className="flex h-screen">
@@ -38,9 +51,11 @@ export default function Signup(){
             You’re one click away from less busywork
         </h1>
         
-        <button  className="cursor-pointer flex items-center justify-center gap-3 font-medium ring-1 ring-black/8 rounded-lg w-96 py-3">
+        <button  
+          onClick={googleLogin}
+          className="cursor-pointer flex items-center justify-center gap-3 font-medium ring-1 ring-black/8 rounded-lg w-96 py-3">
           <img src='/google.png' alt="google login" className="size-5"/>
-          Log in with Google
+          Sign Up with Google
         </button>
         </div>
         <form 

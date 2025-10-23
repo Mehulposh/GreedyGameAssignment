@@ -138,7 +138,7 @@ export default function TodoForm({onClose,editingTodo}){
                                 {editingTodo ? 'Update' : ' + Create Todo'}
                             </button>
                         </div>
-                    </form>
+                    </form>  
                    {error && <p className="text-red-500 mt-2">{error}</p>}
 
 
